@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  redis:
+    container_name: redis
+    image: redis
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+
+  redis-insight:
+    image: redislabs/redisinsight
+    container_name: redis-insight
+    ports:
+      - "8001:8001"
+
+  postgres:
+    container_name: postgres-spring
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: password  # Set your desired password here
+      POSTGRES_USER: postgres
+      POSTGRES_DB: demodb  # Set your desired database name here
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persistant storage for Postgres data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data: {}
