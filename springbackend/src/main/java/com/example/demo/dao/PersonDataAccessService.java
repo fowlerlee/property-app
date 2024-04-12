@@ -3,18 +3,14 @@ package com.example.demo.dao;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import com.example.demo.model.Person;
 
 @Repository("postgres")
 public class PersonDataAccessService implements PersonDao {
 	private final JdbcTemplate jdbcTemplate;
 	
-	@Autowired
 	public PersonDataAccessService(JdbcTemplate template) {
 		this.jdbcTemplate = template;
 	}

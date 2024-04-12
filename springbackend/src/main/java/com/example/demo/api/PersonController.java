@@ -5,8 +5,6 @@ import java.util.UUID;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +22,6 @@ import com.example.demo.service.PersonService;
 public class PersonController {
 	private PersonService personService;
 	
-	@Autowired
 	public PersonController(PersonService personService) {
 		this.personService = personService;
 	}
