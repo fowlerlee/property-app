@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     textTransform : "uppercase",
     textAlign: "center",
     paddingVertical : 40,
-    color : "red"
+    color : "royalblue"
   },
   inputView : {
     gap : 15,
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   input : {
     height : 50,
     paddingHorizontal : 20,
-    borderColor : "red",
+    borderColor : "royalblue",
     borderWidth : 1,
     borderRadius: 7
   },
@@ -98,10 +98,10 @@ const styles = StyleSheet.create({
   },
   forgetText : {
     fontSize : 11,
-    color : "red"
+    color : "royalblue"
   },
   button : {
-    backgroundColor : "red",
+    backgroundColor : "royalblue",
     height : 45,
     borderColor : "gray",
     borderWidth  : 1,

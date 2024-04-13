@@ -16,10 +16,10 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Details" component={Details} />
-        <Stack.Screen name="Intelligence" component={Intelligence} />
-        <Stack.Screen name="AuthForm" component={AuthForm} />
-        <Stack.Screen name="MPeg" component={MPeg} />
+        <Stack.Screen name="Register" component={Details} />
+        <Stack.Screen name="AI Chat" component={Intelligence} />
+        <Stack.Screen name="Login" component={AuthForm} />
+        <Stack.Screen name="Video" component={MPeg} />
 
       </Stack.Navigator>
     </NavigationContainer>

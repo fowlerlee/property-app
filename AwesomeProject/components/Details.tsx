@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Button, TextInput, StatusBar, SafeAreaView, View, Text, ActivityIndicator, FlatList, StyleSheet, ImageComponent, TouchableOpacity, Image } from 'react-native';
+import { ImageBackground, Button, TextInput, StatusBar, SafeAreaView, View, Text, ActivityIndicator, FlatList, StyleSheet, ImageComponent, TouchableOpacity, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useEffect, useContext, useRef, useReducer, useState } from 'react';
 import { Alert } from 'react-native';
-// import { Button } from 'react-native-paper';
+
 
 const BASE_URL = 'http://localhost:8080/api/v1/person';
 
@@ -97,23 +97,32 @@ export default function DetailsScreen({ route, navigation }) {
     };
   
     useEffect(() => {
-      // getMovies();
-      // getPersons();
-      // postPerson();
     }, []);
   
     console.log("text: ", text)
     return (
+    <ImageBackground
+            style={styles.background}
+            source={require("../assets/penthouseview.jpg")}
+      >
       <SafeAreaView style={styles.container}>
-        <Text>Enter Name</Text>
-
-        <View style={styles.inputView}>
+      <View style={styles.formArea}>
+        <Text style={styles.title}>Enter Details</Text>
+        <View style={styles.textInputArea}>
           <TextInput
             style={styles.input}
             onChangeText={onChangeText}
             value={text}
+            placeholder='name'
+          />
+          <TextInput
+            style={styles.input}
+            onChangeText={onChangeText}
+            value={text}
+            placeholder='email'
           />
         </View> 
+      </View>
         <View style={styles.button}>
           <Button  title="Create User" onPress={() => postPerson()} /> 
           <Text>Python everywhere: {pictures}</Text>
@@ -149,30 +158,43 @@ export default function DetailsScreen({ route, navigation }) {
           </View>
         )}
       </SafeAreaView>
-      
+      </ImageBackground>
     );
   }
   
 const styles = StyleSheet.create({
+  background: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center'
+  },
   container : {
     alignItems : "center",
-    paddingTop: 70,
+    justifyContent: 'center',
+    flex: 1,
   },
-  inputView : {
-    gap : 15,
-    width : "100%",
-    paddingHorizontal : 40,
-    marginBottom  :5
+  textInputArea : {
+    flexDirection: 'row',
+    width: '80%',
+    alignContent: 'center',
+    alignItems : "center",
+    justifyContent: 'space-between',
+    flex: 1,
   },
   input: {
     height: 40,
+    width: 150,
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    backgroundColor: 'white',
+    opacity: 0.5
   },
-    imageAI: {
-      width: '50%',
-      height: '50%',
+  formArea: {
+    flex: 1,
+    flexDirection: 'column',
+    height: 300,
+    width: '90%'
     },
     image: {
       flex: 1,
@@ -184,7 +206,9 @@ const styles = StyleSheet.create({
       fontSize: 16, // Adjust font size as needed
     },
     button: {
-      justifyContent: 'center',
+      flexDirection: 'row',
+      flex: 1,
+      justifyContent: 'space-between',
       alignItems: 'center',
       borderRadius: 50,
     },
@@ -198,15 +222,15 @@ const styles = StyleSheet.create({
       alignContent: "center"
     },
     title: {
-      marginTop: 16,
-      paddingVertical: 8,
-      borderWidth: 4,
-      borderColor: '#219ebc',
+      padding: 4,
+      borderWidth: 1,
+      borderColor: 'royalblue',
       borderRadius: 6,
-      backgroundColor: '#8ecae6',
-      color: '#023047',
+      backgroundColor: 'white',
+      color: 'black',
       textAlign: 'center',
       fontSize: 30,
       fontWeight: 'bold',
+      opacity: 0.5
     },
   }); 
