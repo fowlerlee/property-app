@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useEffect, useContext, useRef, useReducer, useState } from 'react';
 import Replicate from "replicate";
 
+import colors from './config/colors';
+import sizes from './config/sizes';
 
 interface StateType {
     text: string[];
@@ -71,14 +73,18 @@ export default function LoginScreen({ route, navigation }) {
     button: {
       flex: 1,
       padding: 24,
-      backgroundColor: 'royalblue',
+      backgroundColor: colors.primary,
       borderRadius: 50,
     },
     title: {
-      fontSize: 18,
-      color: "#fff",
+      fontSize: sizes.title,
+      color: colors.tertiaryOne,
       fontWeight: "bold",
       alignSelf: "center",
-      textTransform: "uppercase"
+      textTransform: "uppercase",
+      backgroundColor: colors.secondary,
+      borderRadius: 20,
+      padding: 10,
+      opacity: 0.5
     }
   });

@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useEffect, useContext, useRef, useReducer, useState } from 'react';
 
+import colors from './config/colors';
+import sizes from './config/sizes';
 
 export default function HomeScreen({ navigation }) {
     return (
@@ -84,15 +86,15 @@ const AppButton = ({ onPress, title }) => (
       paddingVertical: 10,
       paddingHorizontal: 12,
       padding: 24,
-      backgroundColor: 'royalblue',
-      color: 'white',
-      borderColor: 'white',
+      backgroundColor: colors.primary,
+      color: colors.secondary,
+      borderColor: colors.secondary,
       borderWidth: 1,
     },
     list: {
       flex: 1,
       padding: 24,
-      color: 'black',
+      color: colors.tertiaryOne,
       fontFamily: "Helvitica",
       fontStyle:"italic",
       fontWeight:"bold",
@@ -101,10 +103,10 @@ const AppButton = ({ onPress, title }) => (
     title: {
       borderWidth: 1,
       padding: 10,
-      borderColor: 'white',
+      borderColor: colors.secondary,
       borderRadius: 6,
-      backgroundColor: 'white',
-      color: "royalblue",
+      backgroundColor: colors.secondary,
+      color: colors.primary,
       textAlign: 'center',
       fontSize: 22,
       fontWeight: 'bold',
@@ -114,8 +116,8 @@ const AppButton = ({ onPress, title }) => (
       textTransform: "uppercase"
     },
     buttontext: {
-      fontSize: 18,
-      color: "#fff",
+      fontSize: sizes.buttonText,
+      color: colors.secondary,
       fontWeight: "bold",
       alignSelf: "center",
       textTransform: "uppercase"

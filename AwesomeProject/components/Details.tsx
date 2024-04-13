@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useEffect, useContext, useRef, useReducer, useState } from 'react';
 import { Alert } from 'react-native';
 
+import colors from './config/colors';
+import sizes from './config/sizes';
 
 const BASE_URL = 'http://localhost:8080/api/v1/person';
 
@@ -31,6 +33,7 @@ export default function DetailsScreen({ route, navigation }) {
     const [persons, setPersons] = useState<Persons[]>([]);
     const [name, setName] = useState<Name>();
     const [text, onChangeText] = useState('');
+    const [email, onChangeEmail] = useState('');
     const [pictures, setPictures] = useState('');
   
     const getMovies = async () => {
@@ -117,8 +120,8 @@ export default function DetailsScreen({ route, navigation }) {
           />
           <TextInput
             style={styles.input}
-            onChangeText={onChangeText}
-            value={text}
+            onChangeText={onChangeEmail}
+            value={email}
             placeholder='email'
           />
         </View> 
@@ -173,6 +176,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
+  title: {
+      padding: 4,
+      borderWidth: 1,
+      borderColor: colors.primary,
+      borderRadius: 6,
+      backgroundColor: colors.secondary,
+      color: colors.tertiaryOne,
+      textAlign: 'center',
+      fontSize: sizes.title,
+      fontWeight: 'bold',
+      opacity: 0.5
+  },
   textInputArea : {
     flexDirection: 'row',
     width: '80%',
@@ -187,7 +202,7 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
-    backgroundColor: 'white',
+    backgroundColor: colors.secondary,
     opacity: 0.5
   },
   formArea: {
@@ -199,11 +214,10 @@ const styles = StyleSheet.create({
     image: {
       flex: 1,
       padding: 24,
-  
     },
     buttonText: {
-      color: 'white', // White text for better contrast
-      fontSize: 16, // Adjust font size as needed
+      color: colors.secondary,
+      fontSize: 16,
     },
     button: {
       flexDirection: 'row',
@@ -216,21 +230,8 @@ const styles = StyleSheet.create({
       flex: 1,
       padding: 24,
       color: 'black',
-      fontFamily: "Helvitica",
       fontStyle:"italic",
       fontWeight:"bold",
       alignContent: "center"
-    },
-    title: {
-      padding: 4,
-      borderWidth: 1,
-      borderColor: 'royalblue',
-      borderRadius: 6,
-      backgroundColor: 'white',
-      color: 'black',
-      textAlign: 'center',
-      fontSize: 30,
-      fontWeight: 'bold',
-      opacity: 0.5
     },
   }); 

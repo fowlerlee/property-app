@@ -16,6 +16,9 @@ import Video from 'react-native-video';
 import FFmpegWrapper from '../utils/FFmpeg';
 import { useTheme } from '@react-navigation/native';
 
+import colors from './config/colors';
+import sizes from './config/sizes';
+
 const SCREEN_WIDTH = Dimensions.get('screen').width;
 const SCREEN_HEIGHT = Dimensions.get('screen').height;
 export const FRAME_PER_SEC = 1;
@@ -223,13 +226,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonContainer: {
-    backgroundColor: '#000',
+    backgroundColor: colors.primary,
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 16,
   },
   buttonText: {
-    color: '#fff',
+    color: colors.secondary,
   },
   videoContainer: {
     width: SCREEN_WIDTH,

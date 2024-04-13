@@ -3,6 +3,9 @@ import { Alert, Button, Image, Pressable, SafeAreaView, StyleSheet, Switch, Text
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import colors from './config/colors';
+import sizes from './config/sizes';
+
 const instagram = require("../assets/instagram.png")
 const linkedin = require("../assets/linkedin.png")
 const twitter = require("../assets/twitter.png")
@@ -58,23 +61,23 @@ const styles = StyleSheet.create({
     width : 170
   },
   title : {
-    fontSize : 30,
+    fontSize : sizes.title,
     fontWeight : "bold",
     textTransform : "uppercase",
     textAlign: "center",
     paddingVertical : 40,
-    color : "royalblue"
+    color : colors.primary
   },
   inputView : {
     gap : 15,
     width : "100%",
     paddingHorizontal : 40,
-    marginBottom  :5
+    marginBottom: 5
   },
   input : {
     height : 50,
     paddingHorizontal : 20,
-    borderColor : "royalblue",
+    borderColor : colors.primary,
     borderWidth : 1,
     borderRadius: 7
   },
@@ -91,17 +94,16 @@ const styles = StyleSheet.create({
     gap : 1,
     justifyContent : "center",
     alignItems : "center"
-    
   },
   rememberText : {
     fontSize: 13
   },
   forgetText : {
     fontSize : 11,
-    color : "royalblue"
+    color : colors.primary
   },
   button : {
-    backgroundColor : "royalblue",
+    backgroundColor : colors.primary,
     height : 45,
     borderColor : "gray",
     borderWidth  : 1,
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
     justifyContent : "center"
   },
   buttonText : {
-    color : "white"  ,
+    color : colors.secondary,
     fontSize: 18,
     fontWeight : "bold"
   }, 
@@ -141,7 +143,7 @@ const styles = StyleSheet.create({
     color : "gray",
   },
   signup : {
-    color : "red",
+    color : colors.primary,
     fontSize : 13
   }
 });
