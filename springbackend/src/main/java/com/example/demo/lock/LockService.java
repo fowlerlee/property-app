@@ -5,13 +5,15 @@ import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @Service
+@Slf4j
 public class LockService {
 
     private final RedisDistributedLock lock;
 
-    @Autowired
     public LockService(RedisDistributedLock lock) {
         this.lock = lock;
     }
@@ -20,17 +22,17 @@ public class LockService {
 
 		try {
 			if (lock.acquireLock(lockKey, 15000, TimeUnit.MILLISECONDS)) {
-			    System.out.println("Lock acquired. Operation started.");
+				log.info("Lock acquired. Operation started.");
 
 			    Thread.sleep(200);
 			    //write to postgres
 			    
-			    System.out.println("Operation completed.");
+			    log.info("Operation completed.");
 
 			    // if you want, you can release lock.
 			    lock.releaseLock(lockKey);
 			} else {
-				System.out.println("Failed to acquire lock. Resource is busy.");
+				log.info("Failed to acquire lock. Resource is busy.");
 			}
 		} catch (InterruptedException e) {
 		} finally {

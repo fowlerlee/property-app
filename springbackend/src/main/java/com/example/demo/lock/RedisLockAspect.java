@@ -33,9 +33,9 @@ public class RedisLockAspect {
         try {
             acquired = redisTemplate.opsForValue().setIfAbsent(lockKey, "locked", lockTimeout, timeUnit);
             if (acquired) {
-                System.out.println("Lock acquired. Operation started.");
+                log.info("Lock acquired. Operation started.");
             } else {
-            	System.out.println("Failed to acquire lock. Resource is busy.");
+            	log.info("Failed to acquire lock. Resource is busy.");
             }
             return joinPoint.proceed();
         } finally {

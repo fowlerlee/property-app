@@ -7,5 +7,5 @@ CREATE TABLE attachment (
 	id UUID NOT NULL PRIMARY KEY,
 	filename VARCHAR(100) NOT NULL,
 	filetype VARCHAR(100) NOT NULL,
-	data BYTEA
+	data BYTEA 
 );

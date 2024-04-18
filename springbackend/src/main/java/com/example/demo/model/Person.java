@@ -4,9 +4,14 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@Setter
+@NoArgsConstructor
 public class Person {
 	@Id
 	private UUID id;

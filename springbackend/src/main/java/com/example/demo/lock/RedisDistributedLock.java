@@ -11,7 +11,7 @@ public class RedisDistributedLock {
 
     private final RedisTemplate<String, Object> redisTemplate;
 
-    @Autowired
+   
     public RedisDistributedLock(RedisTemplate<String, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }

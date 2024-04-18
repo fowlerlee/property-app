@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import com.example.demo.model.Person;
+import com.example.demo.model.PersonMapper;
 
 @Repository("postgres")
 public class PersonDataAccessService implements PersonDao {
@@ -17,13 +18,12 @@ public class PersonDataAccessService implements PersonDao {
 
 	@Override
 	public int insertPerson(UUID id, Person person) {
-		String sql = "INSERT INTO person (id, name) VALUES (CAST(? AS UUID), CAST(? AS VARCHAR))";
-		Object[] arguments = new Object[]{id.toString(), person.getName().toString()};
+		String sql = "INSERT INTO person (id, name) VALUES ( ? , ? )";
+		Object[] arguments = new Object[]{id, person.getName()};
 		jdbcTemplate.update(sql, arguments);
 		return 1;
 	}
 
-	
 	@Override
 	public List<Person> selectAllPeople() {
 		String sql = "SELECT id, name FROM person";
@@ -36,28 +36,23 @@ public class PersonDataAccessService implements PersonDao {
 
 	@Override
 	public Optional<Person> selectPersonById(UUID id) {
-		final String sql = "SELECT id, name FROM person WHERE id = ?";
-		Person person = jdbcTemplate.queryForObject(sql, (resultSet, i) -> {
-			UUID personId = UUID.fromString(resultSet.getString("id"));
-			String name = resultSet.getString("name");
-			return new Person(personId, name);
-		});
+		final String sql = "select * from person where id=?";
+		Person  person = jdbcTemplate.queryForObject(sql, new PersonMapper(), new Object[] { id });
 		return Optional.ofNullable(person);
-			
 	}
 
 	@Override
 	public int deletePersonById(UUID id) {
-		String sql = "DELETE FROM person WHERE id = (CAST(? AS UUID))";
-		Object[] arguments = new Object[]{id.toString()};
+		String sql = "DELETE FROM person WHERE id = (?)";
+		Object[] arguments = new Object[]{id};
 		jdbcTemplate.update(sql, arguments);
 		return 1;
 	}
 
 	@Override
 	public int updatePersonById(UUID id, Person person) {
-		String sql = "UPDATE person SET id = (CAST(? AS UUID)), name = (CAST(? AS VARCHAR)) WHERE id = (CAST(? AS UUID))";
-		Object[] arguments = new Object[]{id.toString(), person.getName().toString(), id.toString()};
+		String sql = "UPDATE person SET id = (?), name = (?) WHERE id = (?)";
+		Object[] arguments = new Object[]{id, person.getName(), id};
 		jdbcTemplate.update(sql, arguments);
 		return 1;
 	}

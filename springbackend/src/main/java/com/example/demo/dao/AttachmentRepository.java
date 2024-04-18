@@ -1,12 +1,18 @@
 package com.example.demo.dao;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.model.Attachment;
+import com.example.demo.model.AttachmentMapper;
+
+
 
 @Repository
 public class AttachmentRepository implements AttachmentDao {
@@ -19,38 +25,39 @@ public class AttachmentRepository implements AttachmentDao {
 
 	@Override
 	public String insertAttachment(UUID id, Attachment attachment) {
-		String sql = "INSERT INTO attachment (id, filename, filetype, data) VALUES (CAST(? AS UUID), CAST(? AS VARCHAR), CAST(? AS VARCHAR), CAST(? AS BYTEA))";
-		Object[] arguments = new Object[]{id.toString(), 
-											attachment.getFileName().toString(),
-											attachment.getFileType().toString(),
-											attachment.getData().toString()};
+		String sql = "INSERT INTO attachment (id, filename, filetype, data) VALUES (? , ? , ? , ?)";
+		Object[] arguments = new Object[]{id, attachment.getFileName(), attachment.getFileType(), attachment.getData()};
 		jdbcTemplate.update(sql, arguments);
 		return id.toString();
 	}
-//
-//	@Override
-//	public List<Attachment> selectAllAttachments() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
+
 	@Override
-	public Optional<Attachment> selectAttachmentById(UUID id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+	public List<Attachment> selectAllAttachments() {
+		String sql = "select * from attachment";
+		return jdbcTemplate.query(sql, new AttachmentMapper());
 	}
 
-//	@Override
-//	public int deleteAttachmentById(UUID id) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-//
-//	@Override
-//	public int updateAttachmentById(UUID id, Attachment Attachment) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
+	@Override
+	public Optional<Attachment> selectAttachmentById(UUID id) {
+		final String sql = "select * from attachment where id=?";
+		Attachment  attachment = jdbcTemplate.queryForObject(sql, new AttachmentMapper(), new Object[] { id });
+		return Optional.ofNullable(attachment);
+	}
+	
+	@Override
+	public UUID deleteAttachmentById(UUID id) {
+		final String sql = "delete from attachment where id = ?";
+		jdbcTemplate.update(sql, new Object[] {id});
+		return id;
+	}
+
+	@Override
+	public Attachment updateAttachmentById(UUID id, Attachment attachment) {
+		String sql = "UPDATE attachment SET id = (?), filename = (?), filetype = (?), data = (?) WHERE id = (?)";
+		Object[] arguments = new Object[]{id, attachment.getFileName(), attachment.getFileType(), attachment.getData(), id};
+		jdbcTemplate.update(sql, arguments);
+		return attachment;
+	}
 
 	
 

@@ -11,7 +11,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @ComponentScan("com.example.demo")
 @EntityScan("com.example.demo")
-@EnableAutoConfiguration()
 @EnableJpaRepositories("com.example.demo")
 //@EnableScheduling
 public class DemoApplication {
