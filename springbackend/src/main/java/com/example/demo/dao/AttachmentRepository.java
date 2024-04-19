@@ -3,14 +3,12 @@ package com.example.demo.dao;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
-
+import com.example.demo.fileupload.AttachmentResponse;
 import com.example.demo.model.Attachment;
 import com.example.demo.model.AttachmentMapper;
+import com.example.demo.model.AttachmentResponseMapper;
 
 
 
@@ -32,9 +30,9 @@ public class AttachmentRepository implements AttachmentDao {
 	}
 
 	@Override
-	public List<Attachment> selectAllAttachments() {
+	public List<AttachmentResponse> selectAllAttachments() {
 		String sql = "select * from attachment";
-		return jdbcTemplate.query(sql, new AttachmentMapper());
+		return jdbcTemplate.query(sql, new AttachmentResponseMapper());
 	}
 
 	@Override

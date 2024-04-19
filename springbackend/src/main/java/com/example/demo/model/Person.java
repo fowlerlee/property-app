@@ -6,7 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.validation.constraints.NotBlank;
 
 @Entity

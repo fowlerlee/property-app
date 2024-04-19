@@ -4,3 +4,4 @@ app:
    username: postgres
    password: password
    pool-size: 30
+   

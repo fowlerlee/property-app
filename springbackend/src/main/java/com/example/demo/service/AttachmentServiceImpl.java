@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.Attachment;
 import com.example.demo.dao.AttachmentDao;
-
+import com.example.demo.fileupload.AttachmentResponse;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.stereotype.Service;
@@ -40,9 +40,9 @@ public class AttachmentServiceImpl implements AttachmentService{
     }
     
     @Override
-    public List<Attachment> getAllAttachments() {
+    public List<AttachmentResponse> getAllAttachments() {
         return attachmentDao
-                .selectAllAttachments().stream().toList();
+                .selectAllAttachments();
     }
 
     @Override

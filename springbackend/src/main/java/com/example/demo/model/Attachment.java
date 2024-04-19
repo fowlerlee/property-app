@@ -1,9 +1,8 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
 import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -13,16 +12,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import org.springframework.transaction.annotation.Transactional;
 
 @Entity
-@Transactional
 @NoArgsConstructor
 @Data
 @Setter
 @Getter
-public class Attachment {
+public class Attachment implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue
     private UUID id;
@@ -45,23 +44,5 @@ public class Attachment {
         this.fileType = fileType;
         this.data = data;
     }
-
-	public UUID getId() {
-		return id;
-	}
-
-	public String getFileName() {
-		return fileName;
-	}
-
-	public String getFileType() {
-		return fileType;
-	}
-
-	public byte[] getData() {
-		return data;
-	}
-	
-	
     
 }

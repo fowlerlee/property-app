@@ -2,7 +2,6 @@ package com.example.demo.api;
 
 import java.util.List;
 import java.util.UUID;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.demo.model.Person;
 import com.example.demo.service.PersonService;
 
@@ -34,26 +32,21 @@ public class PersonController {
 	@GetMapping 
 	public List<Person> getAllPeople() {
 		return personService.getAllPeople();
-		
 	}
 	
 	@GetMapping(path = "{id}")
 	public Person getPersonById(@PathVariable("id") UUID id) {
 		return personService.getPersonById(id).orElse(null);
-		
 	}
 	
 	@DeleteMapping(path = "{id}")
 	public void deletedPersonById(@PathVariable("id") UUID id) {
 		personService.deletePerson(id);
-		
 	}
 	
 	@PutMapping(path = "{id}")
 	public void updatePersonById(@PathVariable("id") UUID id, @Valid @NotNull @RequestBody Person person) {
 		personService.updatePerson(id, person);
-		
 	}
-	
 	
 }

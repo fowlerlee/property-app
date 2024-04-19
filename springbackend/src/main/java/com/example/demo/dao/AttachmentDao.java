@@ -3,9 +3,7 @@ package com.example.demo.dao;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
-import org.springframework.web.multipart.MultipartFile;
-
+import com.example.demo.fileupload.AttachmentResponse;
 import com.example.demo.model.Attachment;
 
 
@@ -17,7 +15,7 @@ public interface AttachmentDao {
 		return insertAttachment(id, Attachment);
 	}
 
-	List<Attachment> selectAllAttachments();
+	List<AttachmentResponse> selectAllAttachments();
 	
 	Optional<Attachment> selectAttachmentById(UUID id);
 	
