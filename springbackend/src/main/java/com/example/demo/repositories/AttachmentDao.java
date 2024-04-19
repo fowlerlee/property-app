@@ -1,10 +1,11 @@
-package com.example.demo.dao;
+package com.example.demo.repositories;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import com.example.demo.fileupload.AttachmentResponse;
+
 import com.example.demo.model.Attachment;
+import com.example.demo.transferobjects.AttachmentResponse;
 
 
 public interface AttachmentDao {

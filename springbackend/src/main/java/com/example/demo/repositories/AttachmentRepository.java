@@ -1,14 +1,15 @@
-package com.example.demo.dao;
+package com.example.demo.repositories;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import com.example.demo.fileupload.AttachmentResponse;
+
 import com.example.demo.model.Attachment;
 import com.example.demo.model.AttachmentMapper;
 import com.example.demo.model.AttachmentResponseMapper;
+import com.example.demo.transferobjects.AttachmentResponse;
 
 
 

@@ -1,4 +1,4 @@
-package com.example.demo.api;
+package com.example.demo.controller;
 
 import java.util.List;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package com.example.demo.repositories;
 
 import java.util.ArrayList;
 import java.util.List;

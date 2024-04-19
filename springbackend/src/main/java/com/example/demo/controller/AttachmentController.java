@@ -1,8 +1,9 @@
-package com.example.demo.api;
+package com.example.demo.controller;
 
-import com.example.demo.fileupload.AttachmentResponse;
-import com.example.demo.fileupload.ResponseData;
 import com.example.demo.service.*;
+import com.example.demo.transferobjects.AttachmentResponse;
+import com.example.demo.transferobjects.ResponseData;
+
 import lombok.extern.slf4j.Slf4j;
 import com.example.demo.model.*;
 import java.util.List;

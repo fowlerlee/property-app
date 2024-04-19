@@ -1,4 +1,4 @@
-package com.example.demo.fileupload;
+package com.example.demo.transferobjects;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

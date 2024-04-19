@@ -1,8 +1,9 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Attachment;
-import com.example.demo.dao.AttachmentDao;
-import com.example.demo.fileupload.AttachmentResponse;
+import com.example.demo.repositories.AttachmentDao;
+import com.example.demo.transferobjects.AttachmentResponse;
+
 import java.util.List;
 import java.util.UUID;
 import org.springframework.stereotype.Service;

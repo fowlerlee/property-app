@@ -4,7 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 import org.springframework.jdbc.core.RowMapper;
-import com.example.demo.fileupload.AttachmentResponse;
+
+import com.example.demo.transferobjects.AttachmentResponse;
 
 
 public class AttachmentResponseMapper implements RowMapper<AttachmentResponse> {

@@ -6,9 +6,10 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import com.example.demo.dao.PersonDao;
+
 import com.example.demo.lock.RedisLock;
 import com.example.demo.model.Person;
+import com.example.demo.repositories.PersonDao;
 
 @Service
 public class PersonService {
