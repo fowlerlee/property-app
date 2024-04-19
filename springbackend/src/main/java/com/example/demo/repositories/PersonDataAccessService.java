@@ -18,19 +18,21 @@ public class PersonDataAccessService implements PersonDao {
 
 	@Override
 	public int insertPerson(UUID id, Person person) {
-		String sql = "INSERT INTO person (id, name) VALUES ( ? , ? )";
-		Object[] arguments = new Object[]{id, person.getName()};
+		String sql = "INSERT INTO person (id, name, email, password) VALUES ( ? , ? , ? , crypt( ? , gen_salt('bf')) )";
+		Object[] arguments = new Object[]{id, person.getName(), person.getEmail(), person.getPassWord()};
 		jdbcTemplate.update(sql, arguments);
 		return 1;
 	}
 
 	@Override
 	public List<Person> selectAllPeople() {
-		String sql = "SELECT id, name FROM person";
+		String sql = "SELECT id, name, email FROM person";
 		return jdbcTemplate.query(sql, (resultSet, i) -> {
 			UUID id  = UUID.fromString(resultSet.getString("id"));
 			String name = resultSet.getString("name");
-			return new Person(id, name);
+			String email = resultSet.getString("email");
+			
+			return new Person(id, name, email);
 		});
 	}
 
@@ -51,8 +53,8 @@ public class PersonDataAccessService implements PersonDao {
 
 	@Override
 	public int updatePersonById(UUID id, Person person) {
-		String sql = "UPDATE person SET id = (?), name = (?) WHERE id = (?)";
-		Object[] arguments = new Object[]{id, person.getName(), id};
+		String sql = "UPDATE person SET id = (?), name = (?), email = (?), password = (?) WHERE id = (?)";
+		Object[] arguments = new Object[]{id, person.getName(), person.getEmail(), person.getPassWord(), id};
 		jdbcTemplate.update(sql, arguments);
 		return 1;
 	}

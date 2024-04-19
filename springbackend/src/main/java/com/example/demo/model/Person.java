@@ -16,11 +16,25 @@ public class Person {
 	private UUID id;
 	@NotBlank
 	private String name;
+	@NotBlank
+	private String email;
+	@NotBlank
+	private String password;
 	
 	public Person(@JsonProperty("id") UUID id, 
-					@JsonProperty("name") String name) {
+					@JsonProperty("name") String name,
+					@JsonProperty("email") String email,
+					@JsonProperty("password") String password) {
 		this.id = id;
 		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
+	
+	public Person(@JsonProperty("id") UUID id, @JsonProperty("name") String name, @JsonProperty("email") String email) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
 	}
 
 	public String getName() {
@@ -30,4 +44,13 @@ public class Person {
 	public UUID getId() {
 		return this.id;
 	}
+	
+	public String getEmail() {
+		return this.email;
+	}
+	
+	public String getPassWord() {
+		return this.password;
+	}
+
 }

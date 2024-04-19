@@ -13,6 +13,8 @@ public class PersonMapper implements RowMapper<Person> {
 		Person person = new Person();
 		person.setId(UUID.fromString(resultSet.getString("id")));
 		person.setName(resultSet.getString("name"));
+		person.setEmail(resultSet.getString("email"));
+		person.setPassword(resultSet.getString("password"));
 		return person;
 	}
 
