@@ -58,5 +58,14 @@ public class PersonDataAccessService implements PersonDao {
 		jdbcTemplate.update(sql, arguments);
 		return 1;
 	}
+	
+	public boolean isUserEmailPasswordInDatabase(String email, String password) {
+		String sql = "select * from person where email = (?) and password = crypt( (?) , password)";
+		List<Person> query = jdbcTemplate.query(sql, new PersonMapper(), new Object[] { email, password });
+		if (query.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
 
 }
