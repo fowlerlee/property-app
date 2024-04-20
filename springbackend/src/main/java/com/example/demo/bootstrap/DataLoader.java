@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import com.example.demo.model.Person;
-import com.example.demo.repositories.PersonDataAccessService;
+import com.example.demo.repositories.PersonRepository;
 import com.example.demo.service.PersonService;
 
 @Component
@@ -13,7 +13,7 @@ public class DataLoader implements CommandLineRunner {
 	private PersonService personService;
 	
 	@Autowired
-	private PersonDataAccessService personDataAccessService;
+	private PersonRepository personDataAccessService;
 	
 	public DataLoader(PersonService personService) {
 		this.personService = personService;

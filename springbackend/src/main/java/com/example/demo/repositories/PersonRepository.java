@@ -9,10 +9,10 @@ import com.example.demo.model.Person;
 import com.example.demo.model.PersonMapper;
 
 @Repository("postgres")
-public class PersonDataAccessService implements PersonDao {
+public class PersonRepository implements PersonDao {
 	private final JdbcTemplate jdbcTemplate;
 	
-	public PersonDataAccessService(JdbcTemplate template) {
+	public PersonRepository(JdbcTemplate template) {
 		this.jdbcTemplate = template;
 	}
 
