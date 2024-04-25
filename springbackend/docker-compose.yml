@@ -14,6 +14,15 @@ services:
     ports:
       - "8001:8001"
 
+  rabbitmq:
+    image: rabbitmq:latest
+    ports:
+      - "5672:5672"  # RabbitMQ management port
+      - "15672:15672" # RabbitMQ AMQP port
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest  # Set your desired username
+      - RABBITMQ_DEFAULT_PASS=guest   # Set your desired password (not recommended for production)
+
   postgres:
     container_name: postgres-spring
     image: postgres:alpine

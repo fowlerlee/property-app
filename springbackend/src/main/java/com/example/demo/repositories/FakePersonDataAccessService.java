@@ -12,7 +12,7 @@ public class FakePersonDataAccessService implements PersonDao {
 	List<Person> DB = new ArrayList<>();
 	@Override
 	public int insertPerson(UUID id, Person person) {
-		DB.add(new Person(id, person.getName(), person.getEmail(), person.getPassWord()));
+		DB.add(new Person(id, person.getFirstName(), person.getLastName(), person.getEmail(), person.getPassword(), person.getRole()));
 		return 1;
 	}
 	
@@ -43,7 +43,7 @@ public class FakePersonDataAccessService implements PersonDao {
 			.map(p -> {
 				int index = DB.indexOf(p);
 				if (index >= 0) {
-					DB.set(index, new Person(id, person.getName(), person.getEmail(), person.getPassWord()));
+					DB.set(index, new Person(id, person.getFirstName(), person.getLastName(), person.getEmail(), person.getPassword(), person.getRole()));
 					return 1;
 				}
 				return 0;

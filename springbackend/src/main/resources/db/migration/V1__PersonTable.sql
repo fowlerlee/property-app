@@ -9,9 +9,11 @@ CREATE EXTENSION pgcrypto;
 
 CREATE TABLE person (
 	id UUID NOT NULL PRIMARY KEY,
-	name VARCHAR(100) NOT NULL,
+	firstname VARCHAR(100) NOT NULL,
+	lastname VARCHAR(100) NOT NULL,
 	email citext NOT NULL UNIQUE,
-	password TEXT NOT NULL
+	password TEXT NOT NULL,
+	role VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE attachment (

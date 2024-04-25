@@ -18,21 +18,24 @@ public class PersonRepository implements PersonDao {
 
 	@Override
 	public int insertPerson(UUID id, Person person) {
-		String sql = "INSERT INTO person (id, name, email, password) VALUES ( ? , ? , ? , crypt( ? , gen_salt('bf')) )";
-		Object[] arguments = new Object[]{id, person.getName(), person.getEmail(), person.getPassWord()};
+//		String sql = "INSERT INTO person (id, firstname, lastname, email, password, role) VALUES ( ? , ? , ? , ? , crypt( ? , gen_salt('bf')) , ? )";
+		String sql = "INSERT INTO person (id, firstname, lastname, email, password, role) VALUES ( ? , ? , ? , ? , ? , ? )";
+		Object[] arguments = new Object[]{id, person.getFirstName(), person.getLastName(), person.getEmail(), person.getPassword(), person.getRole().toString()};
 		jdbcTemplate.update(sql, arguments);
 		return 1;
 	}
 
 	@Override
 	public List<Person> selectAllPeople() {
-		String sql = "SELECT id, name, email FROM person";
+		String sql = "SELECT id, firstname, lastname, email, role FROM person";
 		return jdbcTemplate.query(sql, (resultSet, i) -> {
 			UUID id  = UUID.fromString(resultSet.getString("id"));
-			String name = resultSet.getString("name");
+			String firstname = resultSet.getString("firstname");
+			String lastname = resultSet.getString("lastname");
 			String email = resultSet.getString("email");
+			String role = resultSet.getString("role");
 			
-			return new Person(id, name, email);
+			return new Person(id, firstname, lastname, email, role);
 		});
 	}
 
@@ -53,8 +56,8 @@ public class PersonRepository implements PersonDao {
 
 	@Override
 	public int updatePersonById(UUID id, Person person) {
-		String sql = "UPDATE person SET id = (?), name = (?), email = (?), password = (?) WHERE id = (?)";
-		Object[] arguments = new Object[]{id, person.getName(), person.getEmail(), person.getPassWord(), id};
+		String sql = "UPDATE person SET id = (?), firstname = (?), lastname = (?), email = (?), password = (?), role = (?) WHERE id = (?)";
+		Object[] arguments = new Object[]{id, person.getFirstName(), person.getLastName(), person.getEmail(), person.getPassword(), person.getRole(), id};
 		jdbcTemplate.update(sql, arguments);
 		return 1;
 	}
@@ -66,6 +69,12 @@ public class PersonRepository implements PersonDao {
 			return false;
 		}
 		return true;
+	}
+
+	public  Optional<Person> findByEmail(String email) {
+		final String sql = "select * from person where email = ( ? )";
+		Person  person = jdbcTemplate.queryForObject(sql, new PersonMapper(), new Object[] { email });
+		return Optional.ofNullable(person);
 	}
 
 }
