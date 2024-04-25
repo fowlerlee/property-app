@@ -28,6 +28,10 @@
 
 - UPDATE /api/vi/person/{id, Person}
 
+- POST /auth/register
+
+- POST /auth/authenticate
+
 ## Attachments with 200KB limit
 
 - GET /viewall - only displays 3 images at a time
