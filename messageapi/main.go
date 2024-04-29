@@ -22,7 +22,7 @@ func seedAccount(store Storage, fname, lname, pw string) *Account {
 }
 
 func seedAccounts(s Storage) {
-	seedAccount(s, "anthony", "GG", "hunter88888")
+	seedAccount(s, "john", "wayn", "wildwildwest")
 }
 
 func main() {
