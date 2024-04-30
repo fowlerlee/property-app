@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Alert, Button, Image, Pressable, SafeAreaView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {register} from './auth/AuthContext'
 
 import colors from './config/colors';
 import sizes from './config/sizes';
@@ -10,17 +11,56 @@ const instagram = require("../assets/instagram.png")
 const linkedin = require("../assets/linkedin.png")
 const twitter = require("../assets/twitter.png")
 
+  enum Role {
+    PERSON=0,
+    ADMIN=1
+  }
+
 export default function AuthForm({ navigation }) {
     const [click, setClick] = useState(false);
-    const [username, setUsername] =  useState("");
+    const [firstname, setFirstname] =  useState("");
+    const [lastname, setLastname] =  useState("");
+    const [email, setEmail] =  useState("");
     const [password, setPassword] =  useState("");
+
+const handleRegister = async () => {
+    let value = await register(firstname, lastname, email, password);
+   
+}
+
+// const postOptions = { 
+//     method: 'POST', 
+//     headers: { 'Content-Type': 'application/json' }, 
+//     body: JSON.stringify({ id: '94ddc6cf-45dd-4bea-a9ab-0e6123ffde3e', name: text}) 
+// };
+
+// const postPerson = async () => {
+//   try {
+//       await fetch(urls., postOptions)
+//         .then(response => {
+//           response.json()
+//             .then(data => {
+//               Alert.alert("Person created: ", data.name)
+//             });
+//         })
+
+//   } catch (error) {
+//     console.error(error)
+//   } finally {
+//     setLoading(false)
+//   }
+// };
 
   return (
     <SafeAreaView style={styles.container}>
         <Text style={styles.title}>Login</Text>
         <View style={styles.inputView}>
-            <TextInput style={styles.input} placeholder='EMAIL OR USERNAME' value={username} onChangeText={setUsername} autoCorrect={false}
+            <TextInput style={styles.input} placeholder='FIRSTNAME' value={firstname} onChangeText={setFirstname} autoCorrect={false}
         autoCapitalize='none' />
+            <TextInput style={styles.input} placeholder='LASTNAME' value={lastname} onChangeText={setLastname} autoCorrect={false}
+        autoCapitalize='none' />
+            <TextInput style={styles.input} placeholder='EMAIL' value={email} onChangeText={setEmail} autoCorrect={false}
+        autoCapitalize='none'/>
             <TextInput style={styles.input} placeholder='PASSWORD' secureTextEntry value={password} onChangeText={setPassword} autoCorrect={false}
         autoCapitalize='none'/>
         </View>
@@ -36,7 +76,7 @@ export default function AuthForm({ navigation }) {
             </View>
         </View>
         <View style={styles.buttonView}>
-            <Pressable style={styles.button} onPress={() => Alert.alert("Login Successfuly!","see you in my instagram if you have questions : must_ait6")}>
+            <Pressable style={styles.button} onPress={handleRegister}>
                 <Text style={styles.buttonText}>LOGIN</Text>
             </Pressable>
             <Text style={styles.optionsText}>OR LOGIN WITH</Text>
